@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block head %}
+    <title>Create post</title>
+{% endblock head %}
+{% block content %}
+<div class="alert">
+{% with error_msg=get_flashed_messages()  %}
+    {% if error_msg %}
+        {{ error_msg }}
+    {% endif %}    
+{% endwith %}
+</div>
+<div class="container">
+    <form method="post" action="{{ url_for('main.create_post') }}">
+        <input type='text' placeholder='Title' required name='title' autocomplete="off">
+        <input type="text" placeholder='Content' required name="content" autocomplete="off">
+        <input type="submit" value="Post">
+    </form>
+</div>
+{% endblock content %}

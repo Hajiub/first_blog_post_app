@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block head %}
+    <title>{{ context.post.title }}</title>
+{% endblock head %}
+{% block content %}
+<h2>{{ context.post.title }}</h2>
+<p>{{ context.post.content }}</p>
+{% with  messages=get_flashed_messages() %}
+    {% if messages %}
+        {{ messages[0] }}
+    {% endif %}
+{% endwith %}
+<div class="comment">
+    <form action="{{ url_for('main.comment_post', post_id=context.post.id) }}" method='post'>
+        <input type="text" name="content" placeholder="You comment!" required autocomplete='off'>
+        <input type='submit' value="Comment">
+    </form>
+</div>
+{% for obj in context.query  %}
+    <p>User: {{ obj[1] }} Comment: {{ obj[0] }}</p>
+{% endfor %}
+{% endblock content %}

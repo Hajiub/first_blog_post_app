@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <title>Home</title>
+{% endblock head %}
+
+{% block content %}
+    {% if posts %}
+        {% for post in posts %}
+            <div class="post">
+                <h2><a href="{{ url_for('main.detail', post_id=post.id) }}">{{ post.title }}</a></h2>
+                <p>{{ post.content }}</p>
+                <p><a href="{{ url_for('main.like_post', post_id=post.id) }}">Like:</a> {{ post.likes_count }}</p>
+                <p>Comments: {{ post.comments_count }}</p>
+                <p>Author: {{ post.user.username }}</p>
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endblock content %}

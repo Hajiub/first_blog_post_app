@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <title>Sign Up</title>
+{% endblock head %}
+
+{% block content %}
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="alert">
+                <ul>
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+    {% endwith %}
+
+    <form action="{{ url_for('auth.signin_post') }}" method="POST">
+        <div class="form-group">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required autocomplete="off">
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required autocomplete="off">
+        </div>
+
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="text" name="password" required autocomplete="off">
+        </div>
+
+        <input type="submit" value="Submit" class="btn btn-primary">
+    </form>
+{% endblock content %}

@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block head %}
+    <title>Log in</title>
+{% endblock head %}
+{% block content %}
+<div class='alert'>
+    {% with msg=get_flashed_messages() %}
+        {{ msg[0] }}
+    {% endwith %}
+</div>
+<form method="post" action="{{ url_for('auth.login_post') }}">
+    <input type='text' placeholder="Your username or email" required autocomplete='off' name='username_email'>
+    <input type='text' placeholder='Your password' required autocomplete='off' name='password'>
+    <label for="remember">Remember me:</label>
+    <input type='checkbox' name='remember'>
+    <input type='submit' value='Log in'>
+</form>
+{% endblock content %}
+
